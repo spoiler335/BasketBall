@@ -6,9 +6,12 @@ public class DI
 {
     public static DI di { get; } = new DI();
 
-    public void Sample()
+    public GameManager gameManager { get; private set; }
+
+
+    public void SetGameManager(GameManager gameManager)
     {
-        Debug.Log("DI is working");
+        this.gameManager = gameManager;
     }
 
 }
