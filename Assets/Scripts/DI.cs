@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DI : MonoBehaviour
+public class DI
 {
-    // Start is called before the first frame update
-    void Start()
+    public static DI di { get; } = new DI();
+
+    public void Sample()
     {
-                
+        Debug.Log("DI is working");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
