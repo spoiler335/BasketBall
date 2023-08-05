@@ -6,11 +6,19 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private float launchForceMultiplier = 0.1f;
     [SerializeField] private float minSwipeDistance = 50f;
+    [SerializeField] private float maxX = 600f;
+    [SerializeField] private float maxY = 1500f;
+
     private Vector3 startSwipePos;
     private Vector3 endSwipePos;
     private float gravity = 9.8f;
 
-    void Update()
+    private void Start()
+    {
+
+    }
+
+    private void Update()
     {
         // Detect swipe input
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -21,9 +29,8 @@ public class BallController : MonoBehaviour
         {
             endSwipePos = Input.GetTouch(0).position;
             Vector3 swipeDirection = endSwipePos - startSwipePos;
-            swipeDirection.x = Mathf.Abs(swipeDirection.x);
-            swipeDirection.y = Mathf.Abs(swipeDirection.y);
-            swipeDirection.z = Mathf.Abs(swipeDirection.z);
+            swipeDirection.x = Mathf.Min(Mathf.Abs(swipeDirection.x), maxX);
+            swipeDirection.y = Mathf.Min(Mathf.Abs(swipeDirection.y), maxY);
             Debug.Log($"swipeDirection = {swipeDirection}");
 
             // Calculate swipe distance and force
