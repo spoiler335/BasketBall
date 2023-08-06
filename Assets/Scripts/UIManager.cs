@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highestScoreText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI timeOverText;
+    [SerializeField] private TextMeshProUGUI startText;
 
     [SerializeField] private Button retryButton;
     [SerializeField] private Button quitButton;
@@ -37,8 +38,17 @@ public class UIManager : MonoBehaviour
         retryButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
         timeOverText.gameObject.SetActive(false);
+        startText.gameObject.SetActive(false);
         highestScoreText.text = $"HighestScore : {DI.di.gameManager.GetHighestScore()}";
         scoreText.text = $"Score : {0}";
+        StartCoroutine(StartLevel());
+    }
+
+    private IEnumerator StartLevel()
+    {
+        startText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+        startText.gameObject.SetActive(false);
         StartCoroutine(StartTimer());
     }
 
