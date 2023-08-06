@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class BallController : MonoBehaviour
 {
@@ -38,9 +39,9 @@ public class BallController : MonoBehaviour
             if (swipeDistance > minSwipeDistance)
             {
                 float launchForce = swipeDistance * launchForceMultiplier;
-
                 // Launch the ball
                 StartCoroutine(LaunchBall(swipeDirection.normalized, launchForce));
+                EventsModel.BALL_LAUNCHED?.Invoke();
             }
         }
     }
@@ -59,6 +60,7 @@ public class BallController : MonoBehaviour
 
             yield return null;
         }
+        EventsModel.BALL_TOUCHED_GROUND?.Invoke(gameObject);
     }
 
 
