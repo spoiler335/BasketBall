@@ -12,5 +12,7 @@ namespace Events
         public static UnityAction TIMER_ENDED;
 
         public static UnityAction<int> UPDATE_SCORE;
+
+        public static UnityAction ADD_SCORE;
     }
 }

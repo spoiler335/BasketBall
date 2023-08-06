@@ -64,4 +64,18 @@ public class BallController : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Target"))
+        {
+            EventsModel.ADD_SCORE?.Invoke();
+            EventsModel.BALL_TOUCHED_GROUND?.Invoke(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            EventsModel.BALL_TOUCHED_GROUND?.Invoke(gameObject);
+        }
+    }
+
 }
